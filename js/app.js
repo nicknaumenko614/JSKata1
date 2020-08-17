@@ -20,6 +20,28 @@ function runApp() {
     sortInstance(instance);
   });
   addTripInfoToDrivers();
+  printOutput();
+}
+
+function printOutput() {
+  drivers.sort((a, b) => parseFloat(b.miles) - parseFloat(a.miles));
+
+  drivers.forEach((driver) => {
+    if (driver.miles === 0) {
+      console.log(
+        driver.name + ": " + Math.round(parseFloat(driver.miles)) + " miles"
+      );
+    } else {
+      console.log(
+        driver.name +
+          ": " +
+          Math.round(parseFloat(driver.miles)) +
+          " miles @ " +
+          Math.round(parseFloat(driver.mph)) +
+          " mph"
+      );
+    }
+  });
 }
 
 export function sortInstance(instance) {
