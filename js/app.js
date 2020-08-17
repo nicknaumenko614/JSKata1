@@ -19,12 +19,14 @@ function runApp() {
     const instance = createInstanceFromCommandLine(line);
     sortInstance(instance);
   });
+  addTripInfoToDrivers();
 }
 
 export function sortInstance(instance) {
   if (instance instanceof Driver) drivers.push(instance);
   if (instance instanceof Trip) {
-    trips.push(instance);
+    const mph = getMPH(instance);
+    if (mph >= 5 && mph <= 100) trips.push(instance);
   }
 }
 
@@ -56,6 +58,18 @@ export function convertMinutes(time) {
 
   minutes += hours * 60;
   return minutes;
+}
+
+export function addTripInfoToDrivers() {
+  trips.forEach((trip) => {
+    const tripDriver = trip.driver;
+    drivers.forEach((driver) => {
+      const driverName = driver.name;
+      if (tripDriver === driverName) {
+        driver.addTrip(trip);
+      }
+    });
+  });
 }
 
 runApp();

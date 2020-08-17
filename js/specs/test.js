@@ -85,3 +85,15 @@ describe("should be able to convert time and return MPH", () => {
     expect(mph).toBe(60);
   });
 });
+
+describe("trip instances should add data to driver instance", () => {
+  driver.addTrip(trip);
+  it("driver miles should be updated with trip info", () => {
+    const miles = driver.miles;
+    expect(miles).toBe(17.3);
+  });
+  it("driver mph should be updated with trip info", () => {
+    const mph = driver.mph;
+    expect(mph).toBe(35);
+  });
+});
