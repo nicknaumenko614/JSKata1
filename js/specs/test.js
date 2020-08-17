@@ -53,11 +53,11 @@ describe("create instances from command lines", () => {
 });
 
 describe("drivers and trips should sort into correct arrays", () => {
-  it("first driver should be Dan", () => {
-    expect(drivers[0].name).toBe("Dan");
+  it("first driver should be Lauren", () => {
+    expect(drivers[0].name).toBe("Lauren");
   });
-  it("second driver should be Lauren", () => {
-    expect(drivers[1].name).toBe("Lauren");
+  it("second driver should be Dan", () => {
+    expect(drivers[1].name).toBe("Dan");
   });
   it("third driver should be Kumi", () => {
     expect(drivers[2].name).toBe("Kumi");

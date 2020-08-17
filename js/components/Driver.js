@@ -24,6 +24,6 @@ export class Driver {
   }
 
   updateMph() {
-    this.mph = this.miles / (this.minutes / 60);
+    this.mph = Math.round(this.miles / (this.minutes / 60));
   }
 }
