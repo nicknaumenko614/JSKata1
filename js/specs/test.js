@@ -1,5 +1,11 @@
 import { FileHelper } from "../components/FileHelper.js";
-import { createInstanceFromCommandLine, drivers, trips } from "../app.js";
+import {
+  createInstanceFromCommandLine,
+  drivers,
+  trips,
+  convertMinutes,
+  getMPH,
+} from "../app.js";
 
 const line1 = "Driver Dan";
 const line4 = "Trip Dan 07:15 07:45 17.3";
@@ -64,5 +70,18 @@ describe("drivers and trips should sort into correct arrays", () => {
   });
   it("first trip should have 42.0 miles", () => {
     expect(trips[2].milesDriven).toBe("42.0");
+  });
+});
+
+describe("should be able to convert time and return MPH", () => {
+  it("01:30 should return 90 minutes", () => {
+    const minutes = convertMinutes("01:30");
+    expect(minutes).toBe(90);
+  });
+  it("trip should return 60 MPH", () => {
+    const line = "Trip Dan 01:00 02:00 60";
+    const newTrip = createInstanceFromCommandLine(line);
+    const mph = getMPH(newTrip);
+    expect(mph).toBe(60);
   });
 });

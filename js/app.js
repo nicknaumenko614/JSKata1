@@ -45,4 +45,17 @@ export function createInstanceFromCommandLine(line) {
   }
 }
 
+export function getMPH(trip) {
+  const minutes = convertMinutes(trip.endTime) - convertMinutes(trip.startTime);
+  return Math.round(parseFloat(trip.milesDriven, 10) / (minutes / 60));
+}
+
+export function convertMinutes(time) {
+  const hours = parseInt(time.split(":")[0], 10);
+  let minutes = parseInt(time.split(":")[1], 10);
+
+  minutes += hours * 60;
+  return minutes;
+}
+
 runApp();
