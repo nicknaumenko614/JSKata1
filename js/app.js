@@ -4,15 +4,29 @@ import { Trip } from "./components/Trip.js";
 
 const textFileToRead = "input.txt";
 const commandLines = convertTextFileToCommandLines();
+export let drivers = [];
+export let trips = [];
 
 function convertTextFileToCommandLines() {
   const fileHelper = new FileHelper();
   const input = fileHelper.readStringFromFile("../" + textFileToRead);
 
-  return input.split(/\n/);
+  return input.split(/\r\n/);
 }
 
-function runApp() {}
+function runApp() {
+  commandLines.forEach((line) => {
+    const instance = createInstanceFromCommandLine(line);
+    sortInstance(instance);
+  });
+}
+
+export function sortInstance(instance) {
+  if (instance instanceof Driver) drivers.push(instance);
+  if (instance instanceof Trip) {
+    trips.push(instance);
+  }
+}
 
 export function createInstanceFromCommandLine(line) {
   const words = line.split(" ");
@@ -30,3 +44,5 @@ export function createInstanceFromCommandLine(line) {
     return new Trip(args[0], args[1], args[2], args[3]);
   }
 }
+
+runApp();
